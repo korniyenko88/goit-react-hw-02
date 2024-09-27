@@ -10,23 +10,24 @@ function App() {
     neutral: 0,
     bad: 0,
   });
-  const onAddGood = () => {
-    setFeedback({ ...feedback, good: feedback.good + 1 });
-  };
-  const onAddNeutral = () => {
-    setFeedback({ ...feedback, neutral: feedback.neutral + 1 });
-  };
-  const onAddBad = () => {
-    setFeedback({ ...feedback, bad: feedback.bad + 1 });
+  const onAddFeedback = fedName => {
+    if (fedName === 'good') {
+      setFeedback({ ...feedback, good: feedback.good + 1 });
+    }
+    if (fedName === 'neutral') {
+      setFeedback({ ...feedback, neutral: feedback.neutral + 1 });
+    }
+    if (fedName === 'bad') {
+      setFeedback({ ...feedback, bad: feedback.bad + 1 });
+    }
   };
 
   return (
     <div>
       <Descriotion />
       <Options
-        onAddGood={onAddGood}
-        onAddNeutral={onAddNeutral}
-        onAddBad={onAddBad}
+        onAddFeedback={onAddFeedback}
+        
       />
       <Feedback feedback={feedback} />
     </div>

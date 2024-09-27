@@ -1,14 +1,26 @@
 import styles from './Options.module.css';
-const Options = ({ onAddGood, onAddNeutral, onAddBad }) => {
+const Options = ({ onAddFeedback }) => {
   return (
     <div>
-      <button onClick={onAddGood} className={styles.button} type="button">
+      <button
+        onClick={() => onAddFeedback('good')}
+        className={styles.button}
+        type="button"
+      >
         Good
       </button>
-      <button onClick={onAddNeutral} className={styles.button} type="button">
+      <button
+        onClick={() => onAddFeedback('neutral')}
+        className={styles.button}
+        type="button"
+      >
         Neutral
       </button>
-      <button onClick={onAddBad} className={styles.button} type="button">
+      <button
+        onClick={() => onAddFeedback('bad')}
+        className={styles.button}
+        type="button"
+      >
         Bad
       </button>
       <button className={styles.button} type="button">

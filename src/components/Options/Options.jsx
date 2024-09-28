@@ -1,31 +1,33 @@
 import styles from './Options.module.css';
-const Options = ({ onAddFeedback }) => {
+const Options = ({ updateFeedback, resetFeedback, hasFeedback }) => {
   return (
     <div>
       <button
-        onClick={() => onAddFeedback('good')}
+        onClick={() => updateFeedback('good')}
         className={styles.button}
         type="button"
       >
         Good
       </button>
       <button
-        onClick={() => onAddFeedback('neutral')}
+        onClick={() => updateFeedback('neutral')}
         className={styles.button}
         type="button"
       >
         Neutral
       </button>
       <button
-        onClick={() => onAddFeedback('bad')}
+        onClick={() => updateFeedback('bad')}
         className={styles.button}
         type="button"
       >
         Bad
       </button>
-      <button className={styles.button} type="button">
-        Reset
-      </button>
+      {hasFeedback && (
+        <button onClick={resetFeedback} className={styles.button} type="button">
+          Reset
+        </button>
+      )}
     </div>
   );
 };

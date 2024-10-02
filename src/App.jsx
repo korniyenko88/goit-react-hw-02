@@ -4,18 +4,25 @@ import Options from './components/Options/Options';
 import Notification from './components/Notification/Notification';
 import { useState } from 'react';
 import './App.css';
+import { useEffect } from 'react';
 
 function App() {
-  const [feedback, setFeedback] = useState({
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  });
+ const [feedback, setFeedback] = useState(() => {
+   const val = localStorage.getItem('countValue');
+   const parsedVal = JSON.parse(val) ?? { good: 0, neutral: 0, bad: 0 };
+   return parsedVal;
+ });
   const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
   const positiveFeedback =
     totalFeedback > 0
       ? Math.round((feedback.good / (feedback.good + feedback.bad)) * 100)
       : 0;
+  useEffect(() => {
+    const stringifiedValue = JSON.stringify(feedback);
+     localStorage.setItem('countValue', stringifiedValue);
+
+  }, [feedback]);
+  
 
   const updateFeedback = feedbackType => {
     if (feedbackType === 'good') {
